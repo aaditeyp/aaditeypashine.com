@@ -1,0 +1,436 @@
+<!doctype html>
+<html lang="en">
+<head>
+<meta charset="utf-8" />
+<meta name="viewport" content="width=device-width, initial-scale=1, viewport-fit=cover" />
+<meta name="color-scheme" content="dark" />
+<link rel="icon" href="data:," />
+<title>Aaditey Pashine</title>
+<meta name="description" content="Aaditey Pashine. Singer, songwriter. Mumbai, Boston." />
+<style>
+  @font-face{ font-family:'Playfair Display'; font-style:normal; font-weight:400 600; font-display:swap; src:url(assets/fonts/PlayfairDisplay-VF.woff2) format('woff2'); }
+  @font-face{ font-family:'Playfair Display'; font-style:italic; font-weight:400; font-display:swap; src:url(assets/fonts/PlayfairDisplay-400i.woff2) format('woff2'); }
+  @font-face{ font-family:'Jost'; font-style:normal; font-weight:300 600; font-display:swap; src:url(assets/fonts/Jost-VF.woff2) format('woff2'); }
+  @font-face{ font-family:'Caveat'; font-style:normal; font-weight:600; font-display:swap; src:url(assets/fonts/Caveat-600.woff2) format('woff2'); }
+</style>
+<style>
+  :root{
+    --bg:#171310;
+    --cream:#f3ead9;
+    --cream-dim:rgba(243,234,217,.62);
+    --cream-faint:rgba(243,234,217,.38);
+    --terra:#d97b4f;
+    --terra-bright:#e8935f;
+    --gold:#c9a35f;
+    --logo:#bcd6e8;
+    --line:rgba(243,234,217,.14);
+    --serif:"Playfair Display", "Didot", "Bodoni MT", Georgia, serif;
+    --sans:"Jost", "Futura", "Century Gothic", "Helvetica Neue", Arial, sans-serif;
+    --script:"Caveat", cursive;
+    --margin:clamp(20px, 6vw, 96px);
+  }
+  *{ box-sizing:border-box; }
+  html{ scroll-behavior:smooth; }
+  body{
+    margin:0; background:var(--bg); color:var(--cream);
+    font-family:var(--sans); font-weight:300; font-size:17px; line-height:1.6;
+    overflow-x:hidden; -webkit-font-smoothing:antialiased;
+  }
+  ::selection{ background:var(--terra); color:#171310; }
+  a{ color:inherit; }
+  img{ display:block; max-width:100%; }
+  button{ font-family:inherit; }
+  .wrap{ max-width:1240px; margin:0 auto; padding-left:var(--margin); padding-right:var(--margin); }
+
+  /* header */
+  header.site{
+    position:fixed; inset:0 0 auto 0; z-index:60;
+    display:flex; align-items:center; justify-content:space-between;
+    padding:.9rem var(--margin);
+    background:linear-gradient(to bottom, rgba(19,15,12,.85), rgba(19,15,12,.45) 70%, transparent);
+    backdrop-filter:blur(6px); -webkit-backdrop-filter:blur(6px);
+  }
+  .wordmark{ font-weight:500; font-size:1rem; letter-spacing:.06em; color:var(--logo); text-decoration:none; padding:.5rem 0; }
+  nav.main{ display:flex; gap:clamp(1.2rem, 3vw, 2.6rem); }
+  nav.main a{ color:var(--cream-dim); text-decoration:none; font-size:.82rem; font-weight:400; letter-spacing:.22em; text-transform:lowercase; padding:.5rem 0; }
+  nav.main a:hover{ color:var(--terra-bright); }
+
+  /* hero */
+  .hero{ position:relative; height:100svh; min-height:560px; overflow:hidden; background:#100c0a; isolation:isolate; }
+  .hero-glow{ position:absolute; inset:0; z-index:0; background:radial-gradient(ellipse 90% 65% at 50% 38%, rgba(146,44,32,.30), rgba(60,20,18,.10) 55%, transparent 78%), radial-gradient(ellipse 60% 45% at 78% 80%, rgba(217,123,79,.12), transparent 70%), #100c0a; }
+  .hero-poster{ position:absolute; inset:0; z-index:1; }
+  .hero-poster img{ width:100%; height:100%; object-fit:cover; object-position:50% 30%; opacity:.9; }
+  .hero-poster::after{ content:""; position:absolute; inset:0; background:linear-gradient(to top, rgba(16,12,10,.72), rgba(16,12,10,.18) 46%, rgba(16,12,10,.34)); }
+  #cloth-wrap{ position:absolute; inset:0; z-index:2; }
+  #cloth-wrap canvas{ display:block; touch-action:none; cursor:grab; }
+  #cloth-wrap canvas.grabbing{ cursor:grabbing; }
+  .hero.shown #cloth-wrap{ animation:clothIn 2.4s ease both; }
+  @keyframes clothIn{ from{ opacity:0; } to{ opacity:1; } }
+  .hero-grain{ position:absolute; inset:0; z-index:3; pointer-events:none; opacity:.38; mix-blend-mode:soft-light; background-image:url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' width='240' height='240'%3E%3Cfilter id='n'%3E%3CfeTurbulence type='fractalNoise' baseFrequency='0.9' numOctaves='2' stitchTiles='stitch'/%3E%3C/filter%3E%3Crect width='100%25' height='100%25' filter='url(%23n)'/%3E%3C/svg%3E"); }
+  .hero-vignette{ position:absolute; inset:0; z-index:4; pointer-events:none; background:radial-gradient(ellipse 105% 90% at 50% 46%, transparent 55%, rgba(8,5,4,.55) 100%); }
+  .hero-text{ position:absolute; z-index:5; left:var(--margin); right:var(--margin); bottom:clamp(3rem, 9vh, 6rem); pointer-events:none; }
+  .hero-text h1{ font-family:var(--serif); font-weight:500; font-size:clamp(4rem, 13vw, 11rem); line-height:.94; letter-spacing:.015em; margin:0; text-shadow:0 2px 34px rgba(0,0,0,.45); }
+  .hero-tag{ margin:1.1rem 0 2rem; font-family:var(--serif); font-style:italic; font-size:clamp(1.05rem, 2vw, 1.4rem); color:var(--cream); text-shadow:0 1px 18px rgba(0,0,0,.6); }
+  .btn-listen{ pointer-events:auto; display:inline-block; background:transparent; color:var(--cream); border:1px solid rgba(243,234,217,.7); font-size:.78rem; font-weight:500; letter-spacing:.32em; text-transform:uppercase; padding:1rem 2.2rem 1rem 2.5rem; cursor:pointer; min-height:50px; transition:background .3s ease, border-color .3s ease, color .3s ease; }
+  .btn-listen:hover{ background:var(--terra); border-color:var(--terra); color:#1c110a; }
+  .hero-hint{ position:absolute; z-index:5; right:var(--margin); bottom:1.4rem; font-family:var(--script); font-size:1.15rem; color:rgba(243,234,217,.55); pointer-events:none; }
+
+  section.block{ padding:clamp(4rem, 9vw, 7.5rem) 0; }
+  .small-head{ font-family:var(--serif); font-style:italic; font-weight:400; font-size:clamp(1.9rem, 4vw, 3rem); margin:0; }
+  .quiet{ color:var(--cream-dim); font-size:1rem; margin:.7rem 0 0; }
+
+  /* listen, minimal icons */
+  .listen{ text-align:center; }
+  .listen-icons{ display:flex; justify-content:center; gap:clamp(1.6rem, 6vw, 4.5rem); margin-top:3rem; flex-wrap:wrap; }
+  .listen-item{ display:flex; flex-direction:column; align-items:center; gap:.9rem; text-decoration:none; color:var(--cream); }
+  .listen-circle{ width:84px; height:84px; border:1px solid rgba(243,234,217,.28); border-radius:50%; display:flex; align-items:center; justify-content:center; transition:border-color .3s ease, background .3s ease, transform .3s ease; }
+  .listen-circle svg{ width:34px; height:34px; fill:var(--cream); transition:fill .3s ease; }
+  .listen-item:hover .listen-circle{ border-color:var(--terra); background:rgba(217,123,79,.08); transform:translateY(-3px); }
+  .listen-item:hover .listen-circle svg{ fill:var(--terra-bright); }
+  .listen-label{ font-size:.74rem; letter-spacing:.28em; text-transform:uppercase; color:var(--cream-dim); }
+  .listen-item:hover .listen-label{ color:var(--cream); }
+
+  /* about, little */
+  .about{ max-width:640px; }
+  .about p{ font-size:clamp(1.15rem, 2vw, 1.45rem); line-height:1.55; margin:0 0 1.1rem; }
+  .about p.dim{ color:var(--cream-dim); font-size:clamp(1rem, 1.6vw, 1.15rem); }
+  .about .sign{ font-family:var(--script); font-size:1.7rem; color:var(--terra-bright); margin-top:1.6rem; }
+
+  /* photos, scattered prints */
+  .photos{ position:relative; padding-bottom:clamp(5rem, 10vw, 8rem); }
+  .collage{ position:relative; margin-top:3rem; }
+  .print{ background:#211a15; border:1px solid rgba(243,234,217,.14); padding:10px 10px 34px; box-shadow:0 18px 40px rgba(0,0,0,.45); }
+  .print img{ width:100%; height:100%; object-fit:cover; filter:grayscale(1) contrast(1.06) brightness(.97); }
+  .print figcaption{ font-family:var(--script); color:var(--cream-dim); font-size:1.2rem; text-align:center; margin-top:8px; line-height:1; }
+  .p-main{ width:min(52%, 520px); transform:rotate(-2deg); position:relative; z-index:2; }
+  .p-main img{ aspect-ratio:4/4.4; }
+  .p-paint{ width:min(36%, 340px); transform:rotate(2.5deg); position:absolute; right:4%; top:18%; z-index:3; }
+  .p-paint img{ aspect-ratio:820/1100; }
+  .p-stage{ width:min(58%, 580px); transform:rotate(1.2deg); margin:clamp(2rem,5vw,4rem) 0 0 auto; position:relative; z-index:2; }
+  .p-stage img{ aspect-ratio:4/3; }
+  .p-piano{ width:min(42%, 400px); transform:rotate(-1.6deg); margin-top:-3.5rem; margin-left:6%; position:relative; z-index:3; }
+  .p-piano img{ aspect-ratio:1200/820; }
+
+  /* songs */
+  .songs{ list-style:none; margin:2.6rem 0 0; padding:0; max-width:720px; }
+  .songs li{ display:flex; justify-content:space-between; align-items:baseline; gap:1.5rem; padding:1.15rem 0; border-bottom:1px solid var(--line); }
+  .songs li:first-child{ border-top:1px solid var(--line); }
+  .song-title{ font-family:var(--serif); font-size:clamp(1.3rem, 2.6vw, 1.9rem); }
+  .song-note{ color:var(--cream-faint); font-size:.92rem; text-align:right; white-space:nowrap; }
+  .work-line{ margin-top:2.8rem; color:var(--cream-faint); font-size:.95rem; max-width:52ch; }
+  .work-line a{ color:var(--cream-dim); text-decoration:none; border-bottom:1px solid rgba(217,123,79,.5); }
+  .work-line a:hover{ color:var(--terra-bright); }
+
+  /* footer */
+  footer.site{ border-top:1px solid var(--line); padding:clamp(3.5rem, 7vw, 5.5rem) var(--margin) 3rem; text-align:center; }
+  .foot-name{ font-family:var(--serif); font-weight:500; text-transform:uppercase; font-size:clamp(1.4rem, 5.5vw, 4.2rem); letter-spacing:.3em; text-indent:.3em; margin:0 0 1.8rem; white-space:nowrap; }
+  .foot-contact{ color:var(--cream-dim); margin:0 0 .8rem; }
+  .foot-contact a{ color:var(--cream); text-decoration:none; border-bottom:1px solid rgba(217,123,79,.5); }
+  .foot-contact a:hover{ color:var(--terra-bright); }
+  .foot-copy{ font-size:.85rem; color:var(--cream-faint); margin:0; }
+
+  @media (max-width: 700px){
+    .p-main{ width:78%; }
+    .p-paint{ width:52%; right:0; top:auto; position:relative; margin:-2.5rem 0 0 auto; }
+    .p-stage{ width:88%; margin-top:2.5rem; }
+    .p-piano{ width:68%; margin-top:-1.5rem; margin-left:0; }
+    .hero-hint{ display:none; }
+    .song-note{ white-space:normal; }
+  }
+  @media (prefers-reduced-motion: reduce){
+    html{ scroll-behavior:auto; }
+    .hero.shown #cloth-wrap{ animation:none; }
+    .listen-item:hover .listen-circle{ transform:none; }
+  }
+</style>
+</head>
+<body>
+
+<header class="site">
+  <a class="wordmark" href="#top">Aaditey Pashine</a>
+  <nav class="main" aria-label="Main">
+    <a href="#listen">listen</a>
+    <a href="#about">about</a>
+    <a href="#photos">photos</a>
+  </nav>
+</header>
+
+<main id="top">
+  <section class="hero" id="hero">
+    <div class="hero-glow"></div>
+    <div class="hero-poster" id="hero-poster">
+      <img src="assets/poster.jpg" alt="Deep red rug, cream and gold patterns" />
+    </div>
+    <div id="cloth-wrap" aria-hidden="true"></div>
+    <div class="hero-grain"></div>
+    <div class="hero-vignette"></div>
+    <div class="hero-text">
+      <h1>AADITEY</h1>
+      <p class="hero-tag">music &amp; more</p>
+      <button class="btn-listen" id="btn-listen" type="button">Listen</button>
+    </div>
+    <span class="hero-hint">pull the rug, gently</span>
+  </section>
+
+  <section class="block listen" id="listen">
+    <div class="wrap">
+      <h2 class="small-head">listen</h2>
+      <p class="quiet">alternative fusion, bilingual music</p>
+      <div class="listen-icons">
+        <a class="listen-item" href="https://open.spotify.com/artist/1T7zMOv9KMOtT396auw6NM" target="_blank" rel="noopener" aria-label="Spotify">
+          <span class="listen-circle"><svg viewBox="0 0 496 512" aria-hidden="true"><path d="M248 8C111.1 8 0 119.1 0 256s111.1 248 248 248 248-111.1 248-248S384.9 8 248 8zm100.7 364.9c-4.2 6.9-13.2 8.7-20.1 4.5-54.9-33.6-124.3-41.1-205.9-22.5-7.9 1.8-15.7-2.9-17.5-10.8s2.9-15.7 10.8-17.5c90.3-20.6 167.6-12.2 229.7 25.8 6.9 4.2 8.7 13.2 4.5 20.1zm24.3-74.5c-5.3 8.6-16.4 10.9-25 5.6-62.5-38.4-158.2-49.6-232.2-27.2-9.5 2.9-19.3-2.6-22.1-12.1-2.9-9.5 2.6-19.3 12.1-22.1C181.5 197.2 291.5 210.1 367.4 256.6c8.6 5.2 10.9 16.4 5.6 25zm8.9-77.3c-73.9-43.9-195.8-48-266.5-26.5-10.9 3.3-22.3-2.8-25.6-13.7-3.3-10.9 2.8-22.3 13.7-25.6C186.7 113.5 326.2 129.1 415 182c10.6 6.3 14.1 20 7.8 30.6-6.3 10.6-20.1 14.1-30.6 7.8z"/></svg></span>
+          <span class="listen-label">Spotify</span>
+        </a>
+        <a class="listen-item" href="https://music.apple.com/in/artist/aaditey/1547807571" target="_blank" rel="noopener" aria-label="Apple Music">
+          <span class="listen-circle"><svg viewBox="0 0 384 512" aria-hidden="true"><path d="M318.7 268.7c-.2-36.7 16.4-64.4 50-84.8-18.8-26.9-47.2-41.7-84.7-44.6-35.5-2.8-74.3 20.7-88.5 20.7-15 0-49.4-19.7-76.4-19.7C63.3 141.2 4 184.8 4 273.5q0 39.3 14.4 81.2c12.8 36.7 59 126.7 107.2 125.2 25.2-.6 43-17.9 75.8-17.9 31.8 0 48.3 17.9 76.4 17.9 48.6-.7 90.4-82.5 102.6-119.3-65.2-30.7-61.7-90-61.7-91.9zm-56.6-164.2c27.3-32.4 24.8-61.9 24-72.5-24.1 1.4-52 16.4-67.9 34.9-17.5 19.8-27.8 44.3-25.6 71.9 26.1 2 49.9-11.4 69.5-34.3z"/></svg></span>
+          <span class="listen-label">Apple Music</span>
+        </a>
+        <a class="listen-item" href="https://on.soundcloud.com/2DXPES2z2WAPkmV9vj" target="_blank" rel="noopener" aria-label="SoundCloud">
+          <span class="listen-circle"><svg viewBox="0 0 640 512" aria-hidden="true"><path d="M111 185.7v140.6c0 9.8 8.4 15.6 16.7 15.6s16.7-6.8 16.7-15.6V185.7c0-9.8-8.4-15.6-16.7-15.6s-16.7 5.8-16.7 15.6zm-55.6 27.4v86c0 9.8 6.9 17.6 16.7 17.6s16.7-7.8 16.7-17.6v-86c0-9.8-6.9-17.6-16.7-17.6s-16.7 7.8-16.7 17.6zM0 256v1c0 9.8 5.6 17.6 13.9 17.6S27.8 266.8 27.8 257v-2c0-9.8-5.6-17.6-13.9-17.6S0 246.2 0 256zm640 57.5c0 41.7-33.9 71.4-75 71.4H277.8c-8.3 0-13.9-5-13.9-13.7V157.3c0-6.8 3.5-12.6 10.3-14.9C305 99.9 353.5 71.4 409.3 71.4c60 0 110.4 33.6 136.6 83 5.7-1 11.6-1.5 17.6-1.5 42.3 0 76.5 34.3 76.5 76.6v84zM194.4 185.7v140.6c0 9.8 8.4 15.6 16.7 15.6 8.3 0 16.7-6.8 16.7-15.6V185.7c0-9.8-8.4-15.6-16.7-15.6-8.3 0-16.7 5.8-16.7 15.6z"/></svg></span>
+          <span class="listen-label">SoundCloud</span>
+        </a>
+      </div>
+    </div>
+  </section>
+
+  <section class="block" id="about" style="padding-top:0;">
+    <div class="wrap">
+      <div class="about">
+        <h2 class="small-head">about</h2>
+        <p style="margin-top:2rem;">Alternative fusion, bilingual music.</p>
+        <p class="dim">Mumbai first. Boston now.</p>
+        <p class="dim">New music soon.</p>
+        <p class="sign">aadi</p>
+      </div>
+    </div>
+  </section>
+
+  <section class="block photos" id="photos" style="padding-top:0;">
+    <div class="wrap">
+      <h2 class="small-head">photos</h2>
+      <div class="collage">
+        <figure class="print p-main" style="margin:0;">
+          <img src="assets/portrait.jpg" alt="Aaditey singing into a microphone in warm orange light" />
+          <figcaption>live</figcaption>
+        </figure>
+        <figure class="print p-paint" style="margin:0;">
+          <img src="assets/painting.jpg" alt="Painted artwork in red, green and gold with a sun-like ring" />
+          <figcaption>home</figcaption>
+        </figure>
+        <figure class="print p-stage" style="margin-left:auto;">
+          <img src="assets/stage.jpg" alt="Two musicians on stage, one singing, one on guitar, red curtain behind" />
+          <figcaption>stage</figcaption>
+        </figure>
+        <figure class="print p-piano">
+          <img src="assets/piano.jpg" alt="Aaditey at the piano in a dim, warm room" />
+          <figcaption>piano</figcaption>
+        </figure>
+      </div>
+    </div>
+  </section>
+
+  <section class="block" id="songs" style="padding-top:0;">
+    <div class="wrap">
+      <h2 class="small-head">songs</h2>
+      <ul class="songs">
+        <li><span class="song-title">Vague</span><span class="song-note">2023</span></li>
+        <li><span class="song-title">Ek Duniya Se</span><span class="song-note">2022</span></li>
+        <li><span class="song-title">Sun Zara</span><span class="song-note">with Shantanu Moitra</span></li>
+        <li><span class="song-title">Vaishnava Janato</span><span class="song-note">with Pt. Hariprasad Chaurasia</span></li>
+        <li><span class="song-title">never had</span><span class="song-note">soon</span></li>
+      </ul>
+      <p class="work-line">Berklee, songwriting. <a href="https://cf09af5b-2c82-4286-b48f-a640960000c6.filesusr.com/ugd/bbcb88_3dcf859dce45466799dd2c3b81725bc1.pdf?index=true" target="_blank" rel="noopener">Full CV</a> if you need it.</p>
+    </div>
+  </section>
+</main>
+
+<footer class="site">
+  <p class="foot-name">Aaditey Pashine</p>
+  <p class="foot-contact"><a href="mailto:aaditeyp@gmail.com">aaditeyp@gmail.com</a> &nbsp;|&nbsp; Boston</p>
+  <p class="foot-copy">&copy; 2026 Aaditey Pashine</p>
+</footer>
+
+<script src="assets/three.min.js"></script>
+<script>
+(function(){
+  "use strict";
+  document.getElementById('btn-listen').addEventListener('click', function(){
+    var el = document.getElementById('listen');
+    if (el) el.scrollIntoView({ behavior: 'smooth', block: 'start' });
+  });
+
+  var hero = document.getElementById('hero');
+  var wrap = document.getElementById('cloth-wrap');
+  var poster = document.getElementById('hero-poster');
+  var reduced = window.matchMedia('(prefers-reduced-motion: reduce)').matches;
+  function webglAvailable(){
+    try { var c = document.createElement('canvas'); return !!(window.WebGLRenderingContext && (c.getContext('webgl') || c.getContext('experimental-webgl'))); } catch(e){ return false; }
+  }
+  if (!window.THREE || !webglAvailable()) return;
+  var SEG = 42, N = SEG + 1, COUNT = N * N;
+  var CLOTH_W = 2.0, CLOTH_H = CLOTH_W * (1289/800);
+  var STEP = 1/60, DAMPING = 0.94, STIFFNESS = 0.22, PASSES = 6;
+  var renderer;
+  try { renderer = new THREE.WebGLRenderer({ antialias:true, alpha:true }); } catch(e){ return; }
+  renderer.setPixelRatio(Math.min(window.devicePixelRatio || 1, 2));
+  renderer.setClearColor(0x000000, 0);
+  wrap.appendChild(renderer.domElement);
+  var canvas = renderer.domElement;
+  var scene = new THREE.Scene();
+  var camera = new THREE.PerspectiveCamera(32, 1, 0.1, 60);
+  var pos = new Float32Array(COUNT * 3);
+  var prev = new Float32Array(COUNT * 3);
+  var home = new Float32Array(COUNT * 3);
+  var pinned = new Uint8Array(COUNT);
+  var WAVES = [];
+  (function(){
+    var seed = 7;
+    function rnd(){ seed = (seed * 16807) % 2147483647; return seed / 2147483647; }
+    for (var i = 0; i < 11; i++){
+      WAVES.push({ ax: 0.5 + rnd() * 2.6, ay: 0.4 + rnd() * 2.0, fx: 1.2 + rnd() * 3.4, fy: 0.6 + rnd() * 2.2, px: rnd() * 6.28, py: rnd() * 6.28, amp: 0.16 - i * 0.011 });
+    }
+  })();
+  function drapeZ(u, v){
+    var z = 0;
+    for (var i = 0; i < WAVES.length; i++){ var w = WAVES[i]; z += w.amp * Math.sin(u * w.fx * w.ax + w.px) * Math.cos(v * w.fy * w.ay + w.py); }
+    z += 0.05 * Math.pow(1 - v, 2.2) * Math.sin(u * 2.4 + 0.6);
+    return z * 0.38;
+  }
+  function layoutCloth(){
+    for (var y = 0; y < N; y++){ for (var x = 0; x < N; x++){
+      var i = y * N + x, i3 = i * 3; var u = x / SEG, v = y / SEG;
+      home[i3] = (u - 0.5) * CLOTH_W; home[i3 + 1] = (0.5 - v) * CLOTH_H; home[i3 + 2] = drapeZ(u, v);
+      pinned[i] = (y === 0) ? 1 : 0;
+    }}
+  }
+  function resetCloth(){ pos.set(home); prev.set(home); }
+  layoutCloth(); resetCloth();
+  var cons = [];
+  function addCon(a, b){ var dx = home[a*3]-home[b*3], dy = home[a*3+1]-home[b*3+1], dz = home[a*3+2]-home[b*3+2]; cons.push(a, b, Math.sqrt(dx*dx + dy*dy + dz*dz)); }
+  for (var cy = 0; cy < N; cy++){ for (var cx = 0; cx < N; cx++){ var ci = cy * N + cx; if (cx < SEG) addCon(ci, ci + 1); if (cy < SEG) addCon(ci, ci + N); } }
+  var geo = new THREE.BufferGeometry();
+  var uvArr = new Float32Array(COUNT * 2);
+  for (var uy = 0; uy < N; uy++) for (var ux = 0; ux < N; ux++){ var ui = uy * N + ux; uvArr[ui*2] = ux / SEG; uvArr[ui*2+1] = 1 - uy / SEG; }
+  var idx = [];
+  for (var fy = 0; fy < SEG; fy++) for (var fx = 0; fx < SEG; fx++){ var a = fy*N+fx, b = a+1, c = a+N, d = c+1; idx.push(a, c, b, b, c, d); }
+  geo.setIndex(idx);
+  geo.setAttribute('position', new THREE.BufferAttribute(pos, 3));
+  geo.setAttribute('uv', new THREE.BufferAttribute(uvArr, 2));
+  geo.computeVertexNormals();
+  var uniforms = { map: { value: null }, camPos: { value: new THREE.Vector3() } };
+  var mat = new THREE.ShaderMaterial({
+    uniforms: uniforms, side: THREE.DoubleSide,
+    vertexShader: ['varying vec2 vUv;','varying vec3 vN;','varying vec3 vW;','void main(){','  vUv = uv;','  vN = normalize(mat3(modelMatrix) * normal);','  vec4 wp = modelMatrix * vec4(position, 1.0);','  vW = wp.xyz;','  gl_Position = projectionMatrix * viewMatrix * wp;','}'].join('\n'),
+    fragmentShader: ['uniform sampler2D map;','uniform vec3 camPos;','varying vec2 vUv;','varying vec3 vN;','varying vec3 vW;','void main(){','  vec3 base = texture2D(map, vUv).rgb;','  vec3 N = normalize(vN);','  vec3 V = normalize(camPos - vW);','  float ndv = abs(dot(N, V));','  float shade = 0.76 + 0.24 * ndv;','  vec3 col = base * shade;','  vec3 L = normalize(vec3(0.35, 0.55, 0.75));','  float sheen = pow(max(dot(reflect(-L, N), V), 0.0), 26.0);','  col += sheen * vec3(0.92, 0.68, 0.38) * 0.38;','  float fres = pow(1.0 - ndv, 2.4);','  col += fres * vec3(0.72, 0.38, 0.18) * 0.20;','  float glint = smoothstep(0.86, 1.0, ndv) * pow(max(dot(N, L), 0.0), 3.0);','  col += glint * vec3(0.16, 0.11, 0.04);','  gl_FragColor = vec4(col, 1.0);','}'].join('\n')
+  });
+  var cloth = new THREE.Mesh(geo, mat);
+  cloth.frustumCulled = false;
+  scene.add(cloth);
+  new THREE.TextureLoader().load('assets/rug.jpg', function(tex){ tex.encoding = THREE.sRGBEncoding; tex.anisotropy = renderer.capabilities.getMaxAnisotropy(); uniforms.map.value = tex; });
+  var TARGET = new THREE.Vector3(0, -0.12, 0);
+  var az = -0.34, pol = 1.42, dist = 6.4;
+  var azT = az, polT = pol, distT = dist;
+  var userZoomed = false;
+  function fitDistance(){
+    var w = hero.clientWidth || 1, h = hero.clientHeight || 1; var aspect = w / h;
+    var t = Math.tan(THREE.MathUtils.degToRad(camera.fov / 2));
+    var dH = (CLOTH_H / 2 + 0.42) / t; var dW = (CLOTH_W / 2 + 0.30) / (t * aspect);
+    return Math.min(8.8, Math.max(2.8, Math.max(dH, dW)));
+  }
+  function resize(){
+    var w = hero.clientWidth, h = hero.clientHeight; if (!w || !h) return;
+    renderer.setSize(w, h); camera.aspect = w / h; camera.updateProjectionMatrix();
+    if (!userZoomed) distT = dist = fitDistance();
+  }
+  window.addEventListener('resize', resize); resize();
+  var grab = null; var simTime = 0;
+  function simulate(dt){
+    simTime += dt; var i, i3;
+    var drift = reduced ? 0 : 0.000018;
+    for (i = 0; i < COUNT; i++){
+      if (pinned[i]) continue; i3 = i * 3;
+      var x = pos[i3], y = pos[i3+1], z = pos[i3+2];
+      var vx = (x - prev[i3]) * DAMPING; var vy = (y - prev[i3+1]) * DAMPING; var vz = (z - prev[i3+2]) * DAMPING;
+      prev[i3] = x; prev[i3+1] = y; prev[i3+2] = z;
+      var fz = drift * Math.sin(simTime * 0.35 + x * 1.9 + y * 1.25) + drift * 0.7 * Math.sin(simTime * 0.15 + y * 2.6 - x * 0.8);
+      pos[i3] = x + vx; pos[i3 + 1] = y + vy; pos[i3 + 2] = z + vz + fz;
+    }
+    if (grab){
+      for (var g = 0; g < grab.idxs.length; g++){
+        var gi = grab.idxs[g]; if (pinned[gi]) continue;
+        var gi3 = gi * 3, wgt = grab.wts[g];
+        var tx = grab.point.x + grab.offs[g*3]; var ty = grab.point.y + grab.offs[g*3+1]; var tz = grab.point.z + grab.offs[g*3+2];
+        var k = 0.16 * (0.35 + 0.65 * wgt);
+        pos[gi3] += (tx - pos[gi3]) * k; pos[gi3 + 1] += (ty - pos[gi3 + 1]) * k; pos[gi3 + 2] += (tz - pos[gi3 + 2]) * k;
+      }
+    }
+    for (var p = 0; p < PASSES; p++){
+      for (var c = 0; c < cons.length; c += 3){
+        var a = cons[c], b = cons[c+1], rest = cons[c+2]; var pa = pinned[a], pb = pinned[b]; if (pa && pb) continue;
+        var a3 = a*3, b3 = b*3;
+        var dx = pos[b3] - pos[a3], dy = pos[b3+1] - pos[a3+1], dz = pos[b3+2] - pos[a3+2];
+        var d = Math.sqrt(dx*dx + dy*dy + dz*dz) || 1e-6; var diff = (d - rest) / d * STIFFNESS;
+        var wa = pa ? 0 : (pb ? 1 : 0.5); var wb = pb ? 0 : (pa ? 1 : 0.5);
+        pos[a3] += dx * diff * wa; pos[a3+1] += dy * diff * wa; pos[a3+2] += dz * diff * wa;
+        pos[b3] -= dx * diff * wb; pos[b3+1] -= dy * diff * wb; pos[b3+2] -= dz * diff * wb;
+      }
+    }
+  }
+  var raycaster = new THREE.Raycaster(); var ndc = new THREE.Vector2(); var pointers = new Map(); var orbiting = null; var pinchDist = 0; var lastTap = 0, lastTapX = 0, lastTapY = 0;
+  function setNDC(e){ var r = canvas.getBoundingClientRect(); ndc.x = ((e.clientX - r.left) / r.width) * 2 - 1; ndc.y = -((e.clientY - r.top) / r.height) * 2 + 1; }
+  function nearestParticle(){ var ray = raycaster.ray; var best = -1, bestD = Infinity; var tmp = new THREE.Vector3(); for (var i = 0; i < COUNT; i++){ tmp.set(pos[i*3], pos[i*3+1], pos[i*3+2]); var d = ray.distanceSqToPoint(tmp); if (d < bestD){ bestD = d; best = i; } } return best; }
+  function startGrab(e){
+    setNDC(e); raycaster.setFromCamera(ndc, camera); var hit = raycaster.intersectObject(cloth); if (!hit.length) return false;
+    var ci = nearestParticle(); if (ci < 0) return false;
+    var cPos = new THREE.Vector3(pos[ci*3], pos[ci*3+1], pos[ci*3+2]); var camDir = new THREE.Vector3(); camera.getWorldDirection(camDir);
+    var plane = new THREE.Plane().setFromNormalAndCoplanarPoint(camDir, cPos); var point = new THREE.Vector3(); raycaster.ray.intersectPlane(plane, point);
+    var cx = ci % N, cyy = Math.floor(ci / N); var idxs = [], wts = [], offs = [];
+    for (var dy = -2; dy <= 2; dy++){ for (var dx = -2; dx <= 2; dx++){ var gx = cx + dx, gy = cyy + dy; if (gx < 0 || gy < 0 || gx >= N || gy >= N) continue; var gi = gy * N + gx; idxs.push(gi); wts.push(Math.exp(-(dx*dx + dy*dy) / (2 * 1.35 * 1.35))); offs.push(pos[gi*3] - point.x, pos[gi*3+1] - point.y, pos[gi*3+2] - point.z); } }
+    grab = { idxs: idxs, wts: wts, offs: offs, plane: plane, point: point.clone(), lastPoint: point.clone(), vel: new THREE.Vector3() };
+    canvas.classList.add('grabbing'); return true;
+  }
+  function moveGrab(e){ if (!grab) return; setNDC(e); raycaster.setFromCamera(ndc, camera); var p = new THREE.Vector3(); if (raycaster.ray.intersectPlane(grab.plane, p)){ grab.vel.copy(p).sub(grab.point).multiplyScalar(0.5).add(grab.vel.clone().multiplyScalar(0.5)); grab.point.copy(p); } }
+  function endGrab(){
+    if (!grab) return; var v = grab.vel.clone(); var maxV = 0.22; if (v.length() > maxV) v.setLength(maxV);
+    for (var g = 0; g < grab.idxs.length; g++){ var gi = grab.idxs[g]; if (pinned[gi]) continue; var gi3 = gi * 3, w = grab.wts[g]; prev[gi3] = pos[gi3] - v.x * w * 0.7; prev[gi3 + 1] = pos[gi3 + 1] - v.y * w * 0.7; prev[gi3 + 2] = pos[gi3 + 2] - v.z * w * 0.7; }
+    grab = null; canvas.classList.remove('grabbing');
+  }
+  canvas.addEventListener('pointerdown', function(e){
+    canvas.setPointerCapture(e.pointerId); pointers.set(e.pointerId, { x: e.clientX, y: e.clientY });
+    var now = performance.now();
+    if (now - lastTap < 300 && Math.hypot(e.clientX - lastTapX, e.clientY - lastTapY) < 48){ resetCloth(); endGrab(); orbiting = null; lastTap = 0; return; }
+    lastTap = now; lastTapX = e.clientX; lastTapY = e.clientY;
+    if (pointers.size === 2){ var pts = Array.from(pointers.values()); pinchDist = Math.hypot(pts[0].x - pts[1].x, pts[0].y - pts[1].y); endGrab(); orbiting = null; return; }
+    if (!startGrab(e)) orbiting = { x: e.clientX, y: e.clientY };
+  });
+  canvas.addEventListener('pointermove', function(e){
+    if (!pointers.has(e.pointerId)) return; pointers.set(e.pointerId, { x: e.clientX, y: e.clientY });
+    if (pointers.size === 2){ var pts = Array.from(pointers.values()); var d = Math.hypot(pts[0].x - pts[1].x, pts[0].y - pts[1].y); if (pinchDist > 0){ distT = THREE.MathUtils.clamp(distT * (pinchDist / d), 2.8, 8.8); userZoomed = true; } pinchDist = d; return; }
+    if (grab){ moveGrab(e); return; }
+    if (orbiting){ var dx = e.clientX - orbiting.x, dy = e.clientY - orbiting.y; orbiting.x = e.clientX; orbiting.y = e.clientY; azT -= dx * 0.0012; polT = THREE.MathUtils.clamp(polT - dy * 0.0012, 0.35, 2.6); }
+  });
+  function releasePointer(e){ pointers.delete(e.pointerId); if (pointers.size === 0){ endGrab(); orbiting = null; pinchDist = 0; } }
+  canvas.addEventListener('pointerup', releasePointer);
+  canvas.addEventListener('pointercancel', releasePointer);
+  canvas.addEventListener('wheel', function(e){ e.preventDefault(); distT = THREE.MathUtils.clamp(distT * (1 + e.deltaY * 0.001), 2.8, 8.8); userZoomed = true; }, { passive: false });
+  var last = performance.now(), acc = 0, firstFrame = true;
+  document.addEventListener('visibilitychange', function(){ last = performance.now(); acc = 0; });
+  function frame(now){
+    requestAnimationFrame(frame);
+    var elapsed = Math.min((now - last) / 1000, 0.25); last = now; acc += elapsed; var steps = 0;
+    while (acc >= STEP && steps < 3){ simulate(STEP); acc -= STEP; steps++; }
+    if (steps === 3) acc = 0;
+    if (steps > 0 || firstFrame){ geo.attributes.position.needsUpdate = true; geo.computeVertexNormals(); }
+    az += (azT - az) * 0.045; pol += (polT - pol) * 0.045; dist += (distT - dist) * 0.045;
+    var sp = Math.sin(pol), x = dist * sp * Math.sin(az), y = dist * Math.cos(pol), z = dist * sp * Math.cos(az);
+    camera.position.set(TARGET.x + x, TARGET.y + y, TARGET.z + z); camera.lookAt(TARGET); uniforms.camPos.value.copy(camera.position);
+    cloth.position.y = reduced ? 0 : Math.sin(now * (Math.PI * 2 / 110000)) * 0.008;
+    cloth.position.x = reduced ? 0 : Math.sin(now * (Math.PI * 2 / 140000)) * 0.004;
+    renderer.render(scene, camera);
+    if (firstFrame){ firstFrame = false; hero.classList.add('shown'); poster.style.display = 'none'; }
+  }
+  requestAnimationFrame(frame);
+})();
+</script>
+</body>
+</html>
