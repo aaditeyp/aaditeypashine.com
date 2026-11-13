@@ -1,0 +1,302 @@
+<!doctype html>
+<html lang="en">
+<head>
+<meta charset="utf-8" />
+<meta name="viewport" content="width=device-width, initial-scale=1, viewport-fit=cover" />
+<meta name="color-scheme" content="dark" />
+<meta name="robots" content="noindex, nofollow" />
+<link rel="icon" href="data:," />
+<title>Selected Works — Aaditey Pashine</title>
+<meta name="description" content="Selected unreleased works by Aaditey Pashine. Private listening." />
+<style>
+  @font-face{ font-family:'Playfair Display'; font-style:normal; font-weight:400 600; font-display:swap; src:url(/assets/fonts/PlayfairDisplay-VF.woff2) format('woff2'); }
+  @font-face{ font-family:'Playfair Display'; font-style:italic; font-weight:400; font-display:swap; src:url(/assets/fonts/PlayfairDisplay-400i.woff2) format('woff2'); }
+  @font-face{ font-family:'Jost'; font-style:normal; font-weight:300 600; font-display:swap; src:url(/assets/fonts/Jost-VF.woff2) format('woff2'); }
+  @font-face{ font-family:'Caveat'; font-style:normal; font-weight:600; font-display:swap; src:url(/assets/fonts/Caveat-600.woff2) format('woff2'); }
+</style>
+<style>
+  :root{
+    --bg:#171310;
+    --cream:#f3ead9;
+    --cream-dim:rgba(243,234,217,.62);
+    --cream-faint:rgba(243,234,217,.38);
+    --terra:#d97b4f;
+    --terra-bright:#e8935f;
+    --gold:#c9a35f;
+    --logo:#bcd6e8;
+    --line:rgba(243,234,217,.14);
+    --serif:"Playfair Display", "Didot", "Bodoni MT", Georgia, serif;
+    --sans:"Jost", "Futura", "Century Gothic", "Helvetica Neue", Arial, sans-serif;
+    --script:"Caveat", cursive;
+    --margin:clamp(20px, 6vw, 96px);
+  }
+  *{ box-sizing:border-box; }
+  html{ scroll-behavior:smooth; }
+  body{
+    margin:0; background:var(--bg); color:var(--cream);
+    font-family:var(--sans); font-weight:300; font-size:17px; line-height:1.6;
+    overflow-x:hidden; -webkit-font-smoothing:antialiased;
+  }
+  ::selection{ background:var(--terra); color:#171310; }
+  a{ color:inherit; }
+  button{ font-family:inherit; }
+  .wrap{ max-width:860px; margin:0 auto; padding-left:var(--margin); padding-right:var(--margin); }
+
+  /* header */
+  header.site{
+    position:fixed; inset:0 0 auto 0; z-index:60;
+    display:flex; align-items:center; justify-content:space-between;
+    padding:.9rem var(--margin);
+    background:linear-gradient(to bottom, rgba(19,15,12,.85), rgba(19,15,12,.45) 70%, transparent);
+    backdrop-filter:blur(6px); -webkit-backdrop-filter:blur(6px);
+  }
+  .wordmark{ font-weight:500; font-size:1rem; letter-spacing:.06em; color:var(--logo); text-decoration:none; padding:.5rem 0; }
+  nav.main{ display:flex; gap:clamp(1.2rem, 3vw, 2.6rem); }
+  nav.main a{ color:var(--cream-dim); text-decoration:none; font-size:.82rem; font-weight:400; letter-spacing:.22em; text-transform:lowercase; padding:.5rem 0; }
+  nav.main a:hover{ color:var(--terra-bright); }
+
+  main{ padding:clamp(7rem, 14vh, 9rem) 0 5rem; }
+  .small-head{ font-family:var(--serif); font-style:italic; font-weight:400; font-size:clamp(1.9rem, 4vw, 3rem); margin:0; }
+  .quiet{ color:var(--cream-dim); font-size:1rem; margin:.7rem 0 0; }
+
+  /* tracks */
+  .tracks{ list-style:none; margin:3rem 0 0; padding:0; }
+  .track{
+    display:flex; align-items:center; gap:1.2rem;
+    padding:1.4rem 0; border-bottom:1px solid var(--line);
+  }
+  .track:first-child{ border-top:1px solid var(--line); }
+  .play-btn{
+    flex:0 0 auto; width:52px; height:52px; border-radius:50%;
+    border:1px solid rgba(243,234,217,.35); background:transparent; color:var(--cream);
+    display:flex; align-items:center; justify-content:center; cursor:pointer;
+    transition:border-color .3s ease, background .3s ease;
+  }
+  .play-btn:hover{ border-color:var(--terra); background:rgba(217,123,79,.08); }
+  .play-btn svg{ width:18px; height:18px; fill:var(--cream); }
+  .play-btn .icon-pause{ display:none; }
+  .track.playing .play-btn{ border-color:var(--terra); background:rgba(217,123,79,.12); }
+  .track.playing .play-btn .icon-play{ display:none; }
+  .track.playing .play-btn .icon-pause{ display:block; }
+  .track-info{ flex:1 1 auto; min-width:0; }
+  .track-title{ font-family:var(--serif); font-size:clamp(1.3rem, 2.6vw, 1.8rem); line-height:1.2; margin:0; }
+  .track-credit{ color:var(--cream-faint); font-size:.92rem; margin:.2rem 0 0; }
+  .progress{
+    height:3px; background:rgba(243,234,217,.14); border-radius:2px;
+    margin-top:.8rem; cursor:pointer;
+  }
+  .progress .bar{ height:100%; width:0; background:var(--terra); border-radius:2px; }
+  .track-time{ flex:0 0 auto; color:var(--cream-faint); font-size:.85rem; font-variant-numeric:tabular-nums; }
+
+  .foot-note{ margin-top:3rem; color:var(--cream-faint); font-size:.95rem; }
+  .foot-note a{ color:var(--cream-dim); text-decoration:none; border-bottom:1px solid rgba(217,123,79,.5); }
+  .foot-note a:hover{ color:var(--terra-bright); }
+
+  /* passcode gate */
+  #gate{
+    position:fixed; inset:0; z-index:100; background:var(--bg);
+    display:flex; align-items:center; justify-content:center; text-align:center;
+    padding:var(--margin);
+  }
+  #gate.hidden{ display:none; }
+  .gate-box{ max-width:420px; width:100%; }
+  .gate-box .small-head{ margin-bottom:.6rem; }
+  .gate-box input{
+    width:100%; margin-top:1.8rem; padding:.9rem 1rem;
+    background:transparent; border:1px solid rgba(243,234,217,.35); border-radius:0;
+    color:var(--cream); font-family:var(--sans); font-size:1rem; font-weight:300;
+    letter-spacing:.08em; text-align:center; outline:none;
+  }
+  .gate-box input:focus{ border-color:var(--terra); }
+  .gate-btn{
+    margin-top:1rem; width:100%; background:transparent; color:var(--cream);
+    border:1px solid rgba(243,234,217,.7); font-size:.78rem; font-weight:500;
+    letter-spacing:.32em; text-transform:uppercase; padding:1rem; cursor:pointer; min-height:50px;
+    transition:background .3s ease, border-color .3s ease, color .3s ease;
+  }
+  .gate-btn:hover{ background:var(--terra); border-color:var(--terra); color:#1c110a; }
+  .gate-error{ color:var(--terra-bright); font-size:.9rem; margin:1rem 0 0; min-height:1.4em; }
+
+  @media (max-width: 700px){
+    .track{ gap:.9rem; }
+    .play-btn{ width:46px; height:46px; }
+    .track-time{ display:none; }
+  }
+</style>
+</head>
+<body>
+
+<div id="gate">
+  <div class="gate-box">
+    <h1 class="small-head">selected works</h1>
+    <p class="quiet">unreleased demos. enter the passcode to listen.</p>
+    <form id="gate-form" autocomplete="off">
+      <input id="gate-input" type="password" placeholder="passcode" aria-label="Passcode" />
+      <button class="gate-btn" type="submit">Enter</button>
+      <p class="gate-error" id="gate-error"></p>
+    </form>
+  </div>
+</div>
+
+<div id="content" hidden>
+  <header class="site">
+    <a class="wordmark" href="/">Aaditey Pashine</a>
+    <nav class="main" aria-label="Main">
+      <a href="/">home</a>
+    </nav>
+  </header>
+
+  <main>
+    <div class="wrap">
+      <h1 class="small-head">selected works</h1>
+      <p class="quiet">unreleased demos. please don&rsquo;t share.</p>
+
+      <ol class="tracks">
+        <li class="track" data-src="audio/never-had.mp3">
+          <button class="play-btn" type="button" aria-label="Play never had">
+            <svg class="icon-play" viewBox="0 0 24 24" aria-hidden="true"><path d="M7 4.5v15l13-7.5z"/></svg>
+            <svg class="icon-pause" viewBox="0 0 24 24" aria-hidden="true"><path d="M6 4h4v16H6zM14 4h4v16h-4z"/></svg>
+          </button>
+          <div class="track-info">
+            <h2 class="track-title">never had</h2>
+            <div class="progress"><div class="bar"></div></div>
+          </div>
+          <span class="track-time">0:00</span>
+        </li>
+        <li class="track" data-src="audio/skribbl.mp3">
+          <button class="play-btn" type="button" aria-label="Play skribbl">
+            <svg class="icon-play" viewBox="0 0 24 24" aria-hidden="true"><path d="M7 4.5v15l13-7.5z"/></svg>
+            <svg class="icon-pause" viewBox="0 0 24 24" aria-hidden="true"><path d="M6 4h4v16H6zM14 4h4v16h-4z"/></svg>
+          </button>
+          <div class="track-info">
+            <h2 class="track-title">skribbl <span style="color:var(--cream-faint); font-size:.72em;">(with Max Bachand)</span></h2>
+            <p class="track-credit">with Max Bachand</p>
+            <div class="progress"><div class="bar"></div></div>
+          </div>
+          <span class="track-time">0:00</span>
+        </li>
+        <li class="track" data-src="audio/ascension.mp3">
+          <button class="play-btn" type="button" aria-label="Play ascension">
+            <svg class="icon-play" viewBox="0 0 24 24" aria-hidden="true"><path d="M7 4.5v15l13-7.5z"/></svg>
+            <svg class="icon-pause" viewBox="0 0 24 24" aria-hidden="true"><path d="M6 4h4v16H6zM14 4h4v16h-4z"/></svg>
+          </button>
+          <div class="track-info">
+            <h2 class="track-title">ascension</h2>
+            <div class="progress"><div class="bar"></div></div>
+          </div>
+          <span class="track-time">0:00</span>
+        </li>
+        <li class="track" data-src="audio/devotion.mp3">
+          <button class="play-btn" type="button" aria-label="Play devotion">
+            <svg class="icon-play" viewBox="0 0 24 24" aria-hidden="true"><path d="M7 4.5v15l13-7.5z"/></svg>
+            <svg class="icon-pause" viewBox="0 0 24 24" aria-hidden="true"><path d="M6 4h4v16H6zM14 4h4v16h-4z"/></svg>
+          </button>
+          <div class="track-info">
+            <h2 class="track-title">devotion <span style="color:var(--cream-faint); font-size:.72em;">(ft. vitt &amp; sophia)</span></h2>
+            <p class="track-credit">ft. vitt &amp; sophia</p>
+            <div class="progress"><div class="bar"></div></div>
+          </div>
+          <span class="track-time">0:00</span>
+        </li>
+      </ol>
+
+      <p class="foot-note"><a href="/">&larr; back to aaditeypashine.com</a></p>
+    </div>
+  </main>
+</div>
+
+<script>
+(function(){
+  "use strict";
+  /* Passcode gate. Change PASSCODE to whatever you share with Wisseloord. */
+  var PASSCODE = "wisseloord";
+  var gate = document.getElementById('gate');
+  var content = document.getElementById('content');
+  var form = document.getElementById('gate-form');
+  var input = document.getElementById('gate-input');
+  var error = document.getElementById('gate-error');
+
+  function unlock(){
+    gate.classList.add('hidden');
+    content.hidden = false;
+    try { sessionStorage.setItem('sw-unlocked', '1'); } catch(e){}
+  }
+  try {
+    if (sessionStorage.getItem('sw-unlocked') === '1'){ unlock(); }
+  } catch(e){}
+  form.addEventListener('submit', function(ev){
+    ev.preventDefault();
+    if (input.value === PASSCODE){ error.textContent = ''; unlock(); }
+    else { error.textContent = 'wrong passcode, try again.'; input.select(); }
+  });
+
+  /* One shared player. Only one track plays at a time. */
+  var audio = new Audio();
+  audio.preload = 'metadata';
+  var current = null;
+
+  function fmt(sec){
+    if (!isFinite(sec)) return '0:00';
+    var m = Math.floor(sec / 60), s = Math.floor(sec % 60);
+    return m + ':' + (s < 10 ? '0' : '') + s;
+  }
+  function setTime(track){
+    var label = track.querySelector('.track-time');
+    var dur = audio.duration;
+    label.textContent = fmt(audio.currentTime) + (isFinite(dur) ? ' / ' + fmt(dur) : '');
+  }
+
+  document.querySelectorAll('.track').forEach(function(track){
+    var btn = track.querySelector('.play-btn');
+    var bar = track.querySelector('.progress .bar');
+    var progress = track.querySelector('.progress');
+
+    btn.addEventListener('click', function(){
+      if (current === track && !audio.paused){ audio.pause(); return; }
+      if (current !== track){
+        if (current) current.classList.remove('playing');
+        current = track;
+        audio.src = track.getAttribute('data-src');
+        audio.play();
+      } else {
+        audio.play();
+      }
+    });
+
+    progress.addEventListener('click', function(ev){
+      if (current !== track) return;
+      var rect = progress.getBoundingClientRect();
+      var ratio = (ev.clientX - rect.left) / rect.width;
+      if (isFinite(audio.duration)) audio.currentTime = ratio * audio.duration;
+    });
+
+    audio.addEventListener('timeupdate', function(){
+      if (current !== track) return;
+      if (isFinite(audio.duration) && audio.duration > 0){
+        bar.style.width = (audio.currentTime / audio.duration * 100) + '%';
+      }
+      setTime(track);
+    });
+    audio.addEventListener('loadedmetadata', function(){
+      if (current === track) setTime(track);
+    });
+  });
+
+  audio.addEventListener('play', function(){
+    if (current) current.classList.add('playing');
+  });
+  audio.addEventListener('pause', function(){
+    if (current) current.classList.remove('playing');
+  });
+  audio.addEventListener('ended', function(){
+    if (current){
+      current.classList.remove('playing');
+      current.querySelector('.progress .bar').style.width = '0%';
+      current.querySelector('.track-time').textContent = '0:00';
+    }
+    current = null;
+  });
+})();
+</script>
+</body>
+</html>
